@@ -9,7 +9,16 @@ function App() {
         <main>
           <Dictionary />
         </main>
-        <footer className="app-footer">Coded by Dominica Kelly</footer>
+        <footer className="app-footer">
+          Coded by Dominica Kelly,{" "}
+          <a
+            href="https://github.com/Its-Shio/dictionary-project"
+            target="_blank"
+            rel="noreferrer"
+          >
+            open source on GitHub
+          </a>
+        </footer>
       </div>
     </div>
   );
