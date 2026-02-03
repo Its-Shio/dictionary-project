@@ -10,7 +10,15 @@ export default function Dictionary() {
   let [photos, setPhotos] = useState(null);
 
   function handleDictionaryResponse(response) {
-    setResults(response.data);
+    console.log(response.data);
+    if (!response.data.meanings) {
+      console.log("Meanings not found/Invalid word");
+    } else {
+      setResults(response.data);
+      let imageApiKey = "de0e2db99e807aaf2e3te4ed847cc3o3";
+      let imageApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${imageApiKey}`;
+      axios.get(imageApiUrl).then(handleImageResponse);
+    }
   }
   function handleImageResponse(response) {
     console.log(response.data);
@@ -22,10 +30,6 @@ export default function Dictionary() {
     const apiKey = "de0e2db99e807aaf2e3te4ed847cc3o3";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
-
-    let imageApiKey = "de0e2db99e807aaf2e3te4ed847cc3o3";
-    let imageApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${imageApiKey}`;
-    axios.get(imageApiUrl).then(handleImageResponse);
   }
 
   function handleKeywordChange(event) {
